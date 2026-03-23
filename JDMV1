@@ -1534,14 +1534,6 @@ updateStatusText = function()
 
 	statusBox.Text =
 		"Current target: " .. targetName .. "\n" ..
-		"Visual toggles:\n" ..
-		"- Highlight = " .. (highlightEnabled and "ON" or "OFF") .. "\n" ..
-		"- Name Tags = " .. (nametagEnabled and "ON" or "OFF") .. "\n" ..
-		"- Team Check = " .. (teamCheckEnabled and "ON" or "OFF") .. "\n" ..
-		"- Aimbot = " .. (zombieLockEnabled and "ON" or "OFF") .. "\n" ..
-		"- Fly = " .. (flyEnabled and "ON" or "OFF") .. "\n" ..
-		"- Walk Speed = " .. tostring(currentWalkSpeed) .. "\n" ..
-		"- Fly Speed = " .. tostring(currentFlySpeed) .. "\n\n" ..
 		"Controls:\n" ..
 		"- " .. keyCodeToText(Keybinds.ToggleUI) .. " = toggle UI\n" ..
 		"- " .. keyCodeToText(Keybinds.DestroyUI) .. " = destroy UI\n" ..
