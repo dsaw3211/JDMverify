@@ -1534,10 +1534,6 @@ updateStatusText = function()
 
 	statusBox.Text =
 		"Current target: " .. targetName .. "\n" ..
-		"Lock circle follows your mouse.\n" ..
-		"Target = closest enemy to your mouse inside the circle.\n" ..
-		"Target must be visible and have line of sight.\n" ..
-		"Target must have valid enemy team data when Team Check is enabled.\n\n" ..
 		"Visual toggles:\n" ..
 		"- Highlight = " .. (highlightEnabled and "ON" or "OFF") .. "\n" ..
 		"- Name Tags = " .. (nametagEnabled and "ON" or "OFF") .. "\n" ..
