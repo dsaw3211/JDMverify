@@ -14,8 +14,8 @@ local ACCESS_CODE = "XYw2@VzJD"
 local uiOpen = true
 local unlocked = false
 local highlightEnabled = false
-local nametagEnabled = true
-local teamCheckEnabled = true
+local nametagEnabled = false
+local teamCheckEnabled = false
 local zombieLockEnabled = false
 local flyEnabled = false
 
@@ -46,7 +46,7 @@ local currentWalkSpeed = 16
 local MIN_SPEED = 10
 local MAX_SPEED = 75
 
-local currentFlySpeed = 65
+local currentFlySpeed = 25
 local MIN_FLY_SPEED = 20
 local MAX_FLY_SPEED = 150
 
@@ -1517,7 +1517,7 @@ local function updateSettingsButtons()
 	keybindButtons.ToggleUI.Text = ((waitingForKeybind == "ToggleUI") and "> " or "") .. "Toggle UI [" .. keyCodeToText(Keybinds.ToggleUI) .. "]"
 	keybindButtons.DestroyUI.Text = ((waitingForKeybind == "DestroyUI") and "> " or "") .. "Destroy UI [" .. keyCodeToText(Keybinds.DestroyUI) .. "]"
 	keybindButtons.FreeMouse.Text = ((waitingForKeybind == "FreeMouse") and "> " or "") .. "Free Mouse [" .. keyCodeToText(Keybinds.FreeMouse) .. "]"
-	keybindButtons.ZombieLock.Text = ((waitingForKeybind == "ZombieLock") and "> " or "") .. "Zombie Lock [" .. keyCodeToText(Keybinds.ZombieLock) .. "]"
+	keybindButtons.ZombieLock.Text = ((waitingForKeybind == "Aimbot") and "> " or "") .. "Aimbot [" .. keyCodeToText(Keybinds.ZombieLock) .. "]"
 	keybindButtons.Highlight.Text = ((waitingForKeybind == "Highlight") and "> " or "") .. "Highlight [" .. keyCodeToText(Keybinds.Highlight) .. "]"
 	keybindButtons.NameTags.Text = ((waitingForKeybind == "NameTags") and "> " or "") .. "Name Tags [" .. keyCodeToText(Keybinds.NameTags) .. "]"
 	keybindButtons.TeamCheck.Text = ((waitingForKeybind == "TeamCheck") and "> " or "") .. "Team Check [" .. keyCodeToText(Keybinds.TeamCheck) .. "]"
@@ -1533,7 +1533,6 @@ updateStatusText = function()
 	local waitingText = waitingForKeybind and ("\nWaiting for keybind: " .. waitingForKeybind) or ""
 
 	statusBox.Text =
-		"Debug UI for your own game.\n\n" ..
 		"Current target: " .. targetName .. "\n" ..
 		"Lock circle follows your mouse.\n" ..
 		"Target = closest enemy to your mouse inside the circle.\n" ..
@@ -1543,7 +1542,7 @@ updateStatusText = function()
 		"- Highlight = " .. (highlightEnabled and "ON" or "OFF") .. "\n" ..
 		"- Name Tags = " .. (nametagEnabled and "ON" or "OFF") .. "\n" ..
 		"- Team Check = " .. (teamCheckEnabled and "ON" or "OFF") .. "\n" ..
-		"- Zombie Lock = " .. (zombieLockEnabled and "ON" or "OFF") .. "\n" ..
+		"- Aimbot = " .. (zombieLockEnabled and "ON" or "OFF") .. "\n" ..
 		"- Fly = " .. (flyEnabled and "ON" or "OFF") .. "\n" ..
 		"- Walk Speed = " .. tostring(currentWalkSpeed) .. "\n" ..
 		"- Fly Speed = " .. tostring(currentFlySpeed) .. "\n\n" ..
@@ -1573,7 +1572,7 @@ updateDynamicTexts = function()
 
 	footerText.Text =
 		string.format(
-			"[%s] UI   [%s] Destroy   [%s] Mouse   [%s] Lock   [%s] HL   [%s] Tags   [%s] Team   [%s] Fly",
+			"[%s] UI   [%s] Destroy   [%s] Mouse   [%s] Aimbot   [%s] ESP   [%s] Tags   [%s] Team   [%s] Fly",
 			keyCodeToText(Keybinds.ToggleUI),
 			keyCodeToText(Keybinds.DestroyUI),
 			keyCodeToText(Keybinds.FreeMouse),
@@ -1587,7 +1586,7 @@ updateDynamicTexts = function()
 	highlightButton.Text = "Highlight [" .. (highlightEnabled and "ON" or "OFF") .. "] <" .. keyCodeToText(Keybinds.Highlight) .. ">"
 	nametagButton.Text = "Name Tags [" .. (nametagEnabled and "ON" or "OFF") .. "] <" .. keyCodeToText(Keybinds.NameTags) .. ">"
 	teamCheckButton.Text = "Team Check [" .. (teamCheckEnabled and "ON" or "OFF") .. "] <" .. keyCodeToText(Keybinds.TeamCheck) .. ">"
-	zombieLockButton.Text = "Zombie Lock [" .. (zombieLockEnabled and "ON" or "OFF") .. "] <" .. keyCodeToText(Keybinds.ZombieLock) .. ">"
+	zombieLockButton.Text = "Aimbot [" .. (zombieLockEnabled and "ON" or "OFF") .. "] <" .. keyCodeToText(Keybinds.ZombieLock) .. ">"
 	flyButton.Text = "Fly [" .. (flyEnabled and "ON" or "OFF") .. "] <" .. keyCodeToText(Keybinds.Fly) .. ">"
 
 	updateSectionHeaders()
@@ -1946,7 +1945,7 @@ keybindButtons.FreeMouse.MouseButton1Click:Connect(function()
 end)
 
 keybindButtons.ZombieLock.MouseButton1Click:Connect(function()
-	waitingForKeybind = "ZombieLock"
+	waitingForKeybind = "Aimbot"
 	updateDynamicTexts()
 	updateStatusText()
 end)
